@@ -14,6 +14,16 @@ public class DGridBagConstraints extends GridBagConstraints {
 		return this;
 	}
 	
+	public DGridBagConstraints setWeightx(final double weightx) {
+		this.weightx = weightx;
+		return this;
+	}
+	
+	public DGridBagConstraints setWeighty(final double weighty) {
+		this.weighty = weighty;
+		return this;
+	}
+	
 	public DGridBagConstraints setFillBoth() {
 		weightx = 1;
 		weighty = 1;

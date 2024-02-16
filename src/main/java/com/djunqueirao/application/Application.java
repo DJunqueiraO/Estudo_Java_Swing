@@ -1,6 +1,6 @@
 package main.java.com.djunqueirao.application;
 
-import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
@@ -8,6 +8,7 @@ import javax.swing.SwingUtilities;
 import main.java.com.djunqueirao.components.DFrame;
 import main.java.com.djunqueirao.components.DGridBagConstraints;
 import main.java.com.djunqueirao.components.DPanel;
+import main.java.com.djunqueirao.components.DTextField;
 
 public class Application {
 	
@@ -22,6 +23,14 @@ public class Application {
 					frame.add(panel);
 					panel.setVisible(true);
 					
+					DTextField textField = new DTextField().setFont(Font.MONOSPACED, Font.BOLD, 30);
+					panel.add(textField, new DGridBagConstraints().setGrid(0, 0).setFillHorizontal());
+					textField.setVisible(true);
+					
+					DPanel buttonsPanel = new DPanel();
+					panel.add(buttonsPanel, new DGridBagConstraints().setGrid(0, 1).setFillBoth());
+					buttonsPanel.setVisible(true);
+					
 					String[][] buttons = new String[][] {
 						new String[] {"1", "2", "3", "+"},
 						new String[] {"4", "5", "6", "-"},
@@ -31,12 +40,18 @@ public class Application {
 					
 					for (int line = 0; line < buttons.length; line++) {
 						DPanel linePanel = new DPanel();
-						panel.add(linePanel, new DGridBagConstraints().setFillBoth());
+						buttonsPanel.add(linePanel, new DGridBagConstraints().setFillBoth());
 						linePanel.setVisible(true);
 						for (int column = 0; column < buttons[line].length; column++) {
-							linePanel.add(new JButton(buttons[line][column]), new DGridBagConstraints().setGrid(line, column).setFillBoth());
-							linePanel.add(new JButton(buttons[line][column]), new DGridBagConstraints().setGrid(line, column).setFillBoth());
-							linePanel.add(new JButton(buttons[line][column]), new DGridBagConstraints().setGrid(line, column).setFillBoth());
+							final String buttonText = buttons[line][column];
+							final JButton button = new JButton(buttonText);
+							button.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 30));
+							button.addActionListener(
+									action -> {
+										textField.addText(buttonText);
+									}
+							);
+							linePanel.add(button, new DGridBagConstraints().setGrid(line, column).setFillBoth());
 						}
 					}
 				}
