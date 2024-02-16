@@ -6,11 +6,11 @@ import java.awt.GridBagConstraints;
 public class DGridBagConstraints extends GridBagConstraints {
 
 	public DGridBagConstraints setGrid(
-			final int gridx,
-			final int gridy
+			final int gridy,
+			final int gridx
 	) {
-		this.gridx = gridx;
 		this.gridy = gridy;
+		this.gridx = gridx;
 		return this;
 	}
 	
