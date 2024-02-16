@@ -1,5 +1,6 @@
 package main.java.com.djunqueirao.application.calculator;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -39,22 +40,23 @@ public class Calculator extends DFrame {
 		if(buttonsPanel == null) {
 			buttonsPanel = new DGridPanel<String>();
 			buttonsPanel.setGrid(
-					new String[][] {
-						new String[] {"1", "2", "3", "+"},
-						new String[] {"4", "5", "6", "-"},
-						new String[] {"7", "8", "9", "*"}, 
-			            new String[] {"0", ".", "=", "/"}
-					}, 
-					buttonText -> {
-						final JButton button = new JButton(buttonText);
-						button.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 30));
-						button.addActionListener(
-								action -> {
-									getTextField().addText(buttonText);
-								}
-						);
-						return button;
-					}
+				new String[][] {
+					new String[] {"1", "2", "3", "+"},
+					new String[] {"4", "5", "6", "-"},
+					new String[] {"7", "8", "9", "*"}, 
+		            new String[] {"0", ".", "=", "/"}
+				}, 
+				buttonText -> {
+					final JButton button = new JButton(buttonText);
+					button.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 30));
+					button.setBackground(Color.WHITE);
+					button.addActionListener(
+						action -> {
+							getTextField().addText(buttonText);
+						}
+					);
+					return button;
+				}
 			);
 			buttonsPanel.setVisible(true);
 		}
@@ -64,6 +66,8 @@ public class Calculator extends DFrame {
 	public DTextField getTextField() {
 		if(textField == null) {
 			textField = new DTextField().setFont(Font.MONOSPACED, Font.BOLD, 30);
+			textField.setBackground(Color.BLACK);
+			textField.setForeground(Color.GREEN);
 			textField.setVisible(true);
 		}
 		return textField;
